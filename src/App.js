@@ -1,41 +1,32 @@
-import logo from './logo.svg';
-import { useEffect, useState } from 'react';
-import './App.css';
+import { useEffect, useState } from "react"
+import "./App.css"
 
-const  App = () =>  {
-
+const App = () => {
   const [users, setUsers] = useState([])
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
-    fetch('/api/v1/users')
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      if (!data.error) {
-        setUsers(data)
-      }
-    })
-    .catch(err => console.log(err))
+    fetch("https://coolio-project.herokuapp.com/api/v1/users")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        if (!data.error) {
+          setUsers(data)
+        }
+      })
+      .catch((err) => console.log(err))
+
+      fetch("/hello")
+        .then((r) => r.json())
+        .then((data) => setCount(data.count))
   }, [])
 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-           <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <h1>Page Count: {count}</h1>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
