@@ -16,7 +16,7 @@ const App = () => {
       })
       .catch((err) => console.log(err))
 
-      fetch("/hello")
+      fetch("https://coolio-project.herokuapp.com/hello")
         .then((r) => r.json())
         .then((data) => setCount(data.count))
   }, [])
